@@ -1,0 +1,73 @@
+#game-second-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.players-container {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  max-width: 800px;
+  color: beige;
+}
+
+.players-container h2 {
+  margin-bottom: 10px;
+  font-size: 4rem;
+}
+
+.players-container input {
+  margin-bottom: 20px;
+  padding: 14px;
+  font-size: 1rem;
+  width: 250px;
+  border-radius: 20px;
+}
+
+input::placeholder {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.difficult-container h2 {
+  margin-bottom: 16px;
+  font-size: 4rem;
+  color: #fdda99;
+}
+.difficult-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.difficulty {
+  background-color: #b8860b;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  margin: 6px 0;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  border-radius: 30px;
+}
+
+.difficulty:hover {
+  background-color: beige;
+  color: black;
+  font-size: x-large;
+}
