@@ -1,0 +1,78 @@
+body {
+  font-family: "Dancing Script", cursive;
+  background-image: url("../../assets/images/background/cat.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+button,
+li {
+  font-family: inherit;
+}
+
+#game-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+}
+
+.game-intro-header {
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+  text-shadow: 2px 2px 5px #000;
+}
+
+#start-button {
+  background-color: darkred;
+  opacity: 0.85;
+  color: white;
+  font-size: 1.8rem;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#start-button:hover {
+  background-color: beige;
+  color: brown;
+}
+
+.game-rules-header {
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+  text-shadow: 2px 2px 5px #000;
+}
+
+.game-rules-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.game-rules-header {
+  font-size: 2rem;
+  margin: 40px auto 20px;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 4px #000;
+}
+
+.game-rules-list {
+  list-style-type: disc;
+  padding: 20px;
+  padding-left: 60px;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: x-large;
+  color: #ceba96;
+  background-color: #2e1313;
+  opacity: 0.85;
+  border-radius: 8px;
+  line-height: 1.6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
