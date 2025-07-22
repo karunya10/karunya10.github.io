@@ -9,7 +9,14 @@ button,
 li {
   font-family: inherit;
 }
-
+#playSound {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
 #game-intro {
   display: flex;
   flex-direction: column;

@@ -4,10 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="favicon.ico?v=2" type="image/x-icon" />
     <link rel="stylesheet" href="./src/styles/start-page.css" />
     <link rel="stylesheet" href="./src/styles/player-selection-page.css" />
     <link rel="stylesheet" href="./src/styles/game-page.css" />
     <link rel="stylesheet" href="./src/styles/result-page.css" />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/background/dustMites.png"
+    />
+    <link rel="preload" as="image" href="assets/images/background/cat.png" />
+    <link rel="preload" as="image" href="assets/images/background/happy.png" />
+    <link rel="preload" as="image" href="assets/images/background/train.png" />
+    <link rel="preload" as="image" href="assets/images/cards/card2.png" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
@@ -17,7 +27,7 @@
   </head>
   <body>
     <main>
-      <button id="playSound">Play Sound</button>
+      <img src="./assets//images/icons/mute.png" id="playSound" />
       <!-- #game-intro is initially shown on the game start screen -->
       <div id="game-intro">
         <h1 class="game-intro-header">Let's Test Your Memory</h1>

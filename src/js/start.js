@@ -7,9 +7,11 @@ window.onload = function () {
   function toggleMusic() {
     if (isPlaying === false) {
       music.play();
+      sound.src = "../assets/images/icons/volume.png";
       isPlaying = true;
     } else {
       music.pause();
+      sound.src = "../assets/images/icons/mute.png";
       music.currentTime = 0;
       isPlaying = false;
     }
