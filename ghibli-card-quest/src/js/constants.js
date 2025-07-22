@@ -1,4 +1,4 @@
-const ASSETS = "../assets";
+const ASSETS = "../../assets";
 const BACKGROUND = ASSETS + "/images/background";
 
 const CAT = BACKGROUND + "/cat.png";

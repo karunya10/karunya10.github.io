@@ -15,7 +15,7 @@ A simple 2-player Memory Game built with **Vanilla JavaScript**, **HTML**, and *
 
 You can play the game at this website: https://karunya10.github.io/ghibli-card-quest
 
-## :joystick: Game Rules
+## 🎮 Game Rules
 
 - Each player gets **15 seconds per turn**.
 - On your turn, you **flip 2 cards**:
@@ -28,7 +28,7 @@ You can play the game at this website: https://karunya10.github.io/ghibli-card-q
 - The game ends when **all pairs are matched**.
 - The player with the **highest score wins**!
 
-## :rocket: Features
+## 🚀 Features
 
 - Random Card Shuffling
 - Basic UI with CSS
