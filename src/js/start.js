@@ -1,5 +1,31 @@
+import { Card } from "./Card.js";
+import { Player } from "./Player.js";
+import { Game } from "./Game.js";
+import {
+  SALMON_AUDIO,
+  DUSTMITES,
+  TRAIN,
+  CARDS,
+  HTMLElements,
+  EIGHT_CARDS,
+  TWELVE_CARDS,
+  SIX_COLUMNS,
+  FOUR_COLUMNS,
+} from "./constants.js";
+
 window.onload = function () {
-  const sound = document.querySelector("#playSound");
+  addAudio();
+  renderPlayerSelection();
+
+  const easyButton = HTMLElements.buttons.easyBtn;
+  easyButton.addEventListener("click", () => renderGameLogic("easy"));
+
+  const mediumButton = HTMLElements.buttons.hardBtn;
+  mediumButton.addEventListener("click", () => renderGameLogic("hard"));
+};
+
+function addAudio() {
+  const sound = HTMLElements.audio;
   sound.addEventListener("click", toggleMusic);
   const music = new Audio(SALMON_AUDIO);
   music.loop = true;
@@ -16,59 +42,63 @@ window.onload = function () {
       isPlaying = false;
     }
   }
+}
 
-  const startButton = document.querySelector("#start-button");
+function renderPlayerSelection() {
+  const startButton = HTMLElements.buttons.startBtn;
   startButton.addEventListener("click", showSecondScreen);
   function showSecondScreen() {
-    document.querySelector("#game-intro").style.display = "none";
-    document.querySelector("#game-second-screen").style.display = "flex";
+    HTMLElements.screens.gameIntoScreen.style.display = "none";
+    HTMLElements.screens.playerSelectionScreen.style.display = "flex";
     document.body.style.backgroundImage = `url("${DUSTMITES}")`;
   }
+}
 
-  const easyButton = document.querySelector("#easy");
-  easyButton.addEventListener("click", () => showThirdScreen("easy"));
+function renderGameLogic(difficulty) {
+  HTMLElements.screens.playerSelectionScreen.style.display = "none";
+  HTMLElements.screens.gameLogicScreen.style.display = "flex";
 
-  const mediumButton = document.querySelector("#hard");
-  mediumButton.addEventListener("click", () => showThirdScreen("hard"));
+  document.body.style.backgroundImage = `url("${TRAIN}")`;
 
-  //Function to show third scren
-  function showThirdScreen(difficulty) {
-    document.querySelector("#game-second-screen").style.display = "none";
-    document.querySelector("#game-third-screen").style.display = "flex";
+  const [player1, player2] = createPlayers();
 
-    document.body.style.backgroundImage = `url("${TRAIN}")`;
+  let noOfCards = difficulty === "easy" ? EIGHT_CARDS : TWELVE_CARDS;
 
-    // Get Playernames from second screen
-    let player1Name = document.querySelector("#player1").value; //Value will be filled in automatically as user enters
-    let player2Name = document.querySelector("#player2").value;
+  //manipulating the grid to accomodate increasing number of cards
+  const grid = HTMLElements.cardsContainer;
+  const columns = noOfCards === EIGHT_CARDS ? FOUR_COLUMNS : SIX_COLUMNS;
+  grid.style.gridTemplateColumns = `repeat(${columns}, 200px)`;
 
-    //Create Player Objects
-    let player1 = new Player(player1Name);
-    let player2 = new Player(player2Name);
+  const cards = createCards(noOfCards);
 
-    let noOfCards = difficulty === "easy" ? 8 : 12;
+  //Create Game Object
+  let game = new Game(player1, player2, cards);
 
-    //manipulating the grid to accomodate increasing number of cards
-    const grid = document.querySelector("#cards-container");
-    const columns = noOfCards === 8 ? 4 : 6;
-    grid.style.gridTemplateColumns = `repeat(${columns}, 200px)`;
+  //Start the game
+  game.startGame();
+}
 
-    //Create Cards Object
-    let cards = [];
+function createPlayers() {
+  // Get Playernames from second screen
+  let player1Name = HTMLElements.players.player1InputField.value; //Value will be filled in automatically as user enters
+  let player2Name = HTMLElements.players.player2InputField.value;
 
-    //Create 4 or 6 cards
-    for (let i = 0; i < noOfCards / 2; i++) {
-      const id = `c${i}`;
-      let card = new Card(id, CARDS + `/${i}.png`);
-      cards.push(card);
-    }
-    // Duplicate cards
-    cards = [...cards, ...cards];
+  //Create Player Objects
+  let player1 = new Player(player1Name);
+  let player2 = new Player(player2Name);
+  return [player1, player2];
+}
 
-    //Create Game Object
-    let game = new Game(player1, player2, cards);
+function createCards(noOfCards) {
+  //Create Cards Object
+  let cards = [];
 
-    //Start the game
-    game.startGame();
+  //Create 4 or 6 cards
+  for (let i = 0; i < noOfCards / 2; i++) {
+    const id = `c${i}`;
+    let card = new Card(id, CARDS + `/${i}.png`);
+    cards.push(card);
   }
-};
+  // Duplicate cards
+  return [...cards, ...cards];
+}

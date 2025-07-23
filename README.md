@@ -1,19 +1,10 @@
-<!-- https://github.com/adam-p/markdown-here/wiki/markdown-cheatsheet
-
-## Notes
-
-- Rename the CSS files
-- FindOut about .vscode Folder
-- Choose proper folder structure
-- Search best practice naming conventions -->
-
 # Ghibli Card Quest
 
 A simple 2-player Memory Game built with **Vanilla JavaScript**, **HTML**, and **CSS**, using Object-Oriented Programming principles.
 
 ## Demo
 
-You can play the game at this website: https://karunya10.github.io/ghibli-card-quest
+You can play the game at this website: https://karunya10.github.io/
 
 ## 🎮 Game Rules
 
@@ -50,5 +41,3 @@ You can play the game at this website: https://karunya10.github.io/ghibli-card-q
 ## 👉 GitHub Repository:
 
 [Ghibli-Card-Quest](https://github.com/karunya10/ghibli-card-quest)
-
-[]
