@@ -50,3 +50,5 @@ export const EIGHT_CARDS = 8;
 export const TWELVE_CARDS = 12;
 export const FOUR_COLUMNS = 4;
 export const SIX_COLUMNS = 6;
+
+export const FIFTEEN_SECONDS = 15;

@@ -16,6 +16,7 @@ import {
 window.onload = function () {
   addAudio();
   renderPlayerSelection();
+  addFormValidation();
 
   const easyButton = HTMLElements.buttons.easyBtn;
   easyButton.addEventListener("click", () => renderGameLogic("easy"));
@@ -54,12 +55,56 @@ function renderPlayerSelection() {
   }
 }
 
+function addFormValidation() {
+  const name1Input = document.querySelector("#player1");
+  const error1Text = document.querySelector("#name1-error");
+  const name2Input = document.querySelector("#player2");
+  const error2Text = document.querySelector("#name2-error");
+
+  name1Input.addEventListener("input", () => {
+    nameCheck(name1Input, error1Text);
+    toggleDifficulty();
+  });
+  name2Input.addEventListener("input", () => {
+    nameCheck(name2Input, error2Text);
+    toggleDifficulty();
+  });
+
+  function nameCheck(nameInput, errorText) {
+    const nameValue = nameInput.value.trim();
+    const namePattern = /^[A-Za-z ]+$/;
+    if (nameValue === "") {
+      errorText.textContent = "Name is required.";
+    } else if (!namePattern.test(nameValue)) {
+      errorText.textContent = "Only letters and spaces are allowed.";
+    } else {
+      errorText.textContent = "";
+    }
+  }
+
+  function toggleDifficulty() {
+    if (
+      error1Text.textContent === "" &&
+      error2Text.textContent === "" &&
+      name1Input.value.trim() !== "" &&
+      name2Input.value.trim() !== ""
+    ) {
+      HTMLElements.buttons.easyBtn.disabled = false;
+      HTMLElements.buttons.hardBtn.disabled = false;
+    } else {
+      HTMLElements.buttons.easyBtn.disabled = true;
+      HTMLElements.buttons.hardBtn.disabled = true;
+    }
+  }
+}
+
 function renderGameLogic(difficulty) {
   HTMLElements.screens.playerSelectionScreen.style.display = "none";
   HTMLElements.screens.gameLogicScreen.style.display = "flex";
 
   document.body.style.backgroundImage = `url("${TRAIN}")`;
 
+  //Create Players
   const [player1, player2] = createPlayers();
 
   let noOfCards = difficulty === "easy" ? EIGHT_CARDS : TWELVE_CARDS;

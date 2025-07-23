@@ -1,4 +1,4 @@
-import { HAPPY, CARDS, HTMLElements } from "./constants.js";
+import { HAPPY, CARDS, HTMLElements, FIFTEEN_SECONDS } from "./constants.js";
 
 export class Game {
   constructor(player1, player2, cards) {
@@ -7,7 +7,7 @@ export class Game {
     this.cards = cards;
     this.currentPlayer = player1.id;
     this.score = { [player1.id]: 0, [player2.id]: 0 };
-    this.remainingTime = 14;
+    this.remainingTime = FIFTEEN_SECONDS;
     this.firstClick = false;
     this.intervalId;
     this.chosenCards = [];
@@ -16,17 +16,23 @@ export class Game {
     this.shuffleCards();
     this.updatePlayerNames();
 
-    //Create (div-> image)
+    //Create (div container)
     const cardsContainer = HTMLElements.cardsContainer;
 
     for (let i = 0; i < this.cards.length; i++) {
       const card = this.cards[i];
-      const cardElement = card.render((card, imgElement) => {
-        imgElement.addEventListener("click", () => {
-          this.flipCardLogic(card, imgElement);
-        });
+
+      // construct div->img
+      const cardContainer = document.createElement("div");
+      const imgElement = document.createElement("img");
+      imgElement.src = CARDS + "/guess.png";
+
+      cardContainer.appendChild(imgElement);
+      cardsContainer.appendChild(cardContainer);
+
+      imgElement.addEventListener("click", () => {
+        this.flipCardLogic(card, imgElement);
       });
-      cardsContainer.appendChild(cardElement);
     }
   }
   flipCardLogic(card, imgElement) {
@@ -35,9 +41,7 @@ export class Game {
       this.startTimer();
     }
     //Update image of card
-    // card.flipCard(imgElement);
     imgElement.src = card.image;
-    card.isFlipped = true;
 
     this.chosenCards.push(card);
     if (this.firstClick === true) {
@@ -52,13 +56,8 @@ export class Game {
         this.resetTimers();
         this.chosenCards = [];
       } else {
-        // consept => Closure
         setTimeout(() => {
-          this.flipCardsBack();
-          this.resetTimers();
-          this.changeCurrentPlayer();
-          this.chosenCards = [];
-          this.firstClick = false;
+          this.resetCardsGameLogic();
         }, 1000);
       }
     }
@@ -69,8 +68,6 @@ export class Game {
       // img[src = "./images/cards/0.png"]
       const imgElement = document.querySelector(`img[src = "${card.image}"]`); // attribute selector
       imgElement.src = CARDS + "/guess.png";
-
-      // card.flipCard(imgElement);
     });
   }
   compareCards() {
@@ -99,10 +96,7 @@ export class Game {
       const time = HTMLElements.timeLeft;
       time.innerText = this.remainingTime--;
       if (this.remainingTime < 0) {
-        this.changeCurrentPlayer();
-        this.firstClick = false;
-        this.resetTimers();
-        this.flipCardsBack();
+        this.resetCardsGameLogic();
         clearInterval(this.intervalId);
       }
     }, 500);
@@ -110,7 +104,7 @@ export class Game {
   resetTimers() {
     clearInterval(this.intervalId);
     const time = HTMLElements.timeLeft;
-    this.remainingTime = 15;
+    this.remainingTime = FIFTEEN_SECONDS;
     time.innerText = this.remainingTime;
   }
   changeCurrentPlayer() {
@@ -149,6 +143,13 @@ export class Game {
       return true;
     }
     return false;
+  }
+  resetCardsGameLogic() {
+    this.changeCurrentPlayer();
+    this.firstClick = false;
+    this.resetTimers();
+    this.flipCardsBack();
+    this.chosenCards = [];
   }
   showEndScreen() {
     HTMLElements.screens.gameLogicScreen.style.display = "none";
