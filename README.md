@@ -40,4 +40,4 @@ You can play the game at this website: https://karunya10.github.io/
 
 ## 👉 GitHub Repository:
 
-[Ghibli-Card-Quest](https://github.com/karunya10/ghibli-card-quest)
+[Ghibli-Card-Quest](https://github.com/karunya10/karunya10.github.io)
