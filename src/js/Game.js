@@ -37,6 +37,9 @@ export class Game {
   }
   flipCardLogic(card, imgElement) {
     //Start the timer
+    if (this.chosenCards.length === 2) {
+      return;
+    }
     if (this.firstClick === false) {
       this.startTimer();
     }
