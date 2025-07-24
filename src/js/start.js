@@ -26,7 +26,8 @@ window.onload = function () {
 };
 
 function addAudio() {
-  const sound = HTMLElements.audio;
+  // const sound = HTMLElements.audio;
+  const { audio: sound } = HTMLElements;
   sound.addEventListener("click", toggleMusic);
   const music = new Audio(SALMON_AUDIO);
   music.loop = true;
@@ -46,7 +47,8 @@ function addAudio() {
 }
 
 function renderPlayerSelection() {
-  const startButton = HTMLElements.buttons.startBtn;
+  // const startButton = HTMLElements.buttons.startBtn;
+  const { startBtn: startButton } = HTMLElements.buttons;
   startButton.addEventListener("click", showSecondScreen);
   function showSecondScreen() {
     HTMLElements.screens.gameIntoScreen.style.display = "none";
@@ -125,8 +127,11 @@ function renderGameLogic(difficulty) {
 
 function createPlayers() {
   // Get Playernames from second screen
-  let player1Name = HTMLElements.players.player1InputField.value; //Value will be filled in automatically as user enters
-  let player2Name = HTMLElements.players.player2InputField.value;
+  // let player1Name = HTMLElements.players.player1InputField.value; //Value will be filled in automatically as user enters
+  // let player2Name = HTMLElements.players.player2InputField.value;
+
+  const { value: player1Name } = HTMLElements.players.player1InputField;
+  const { value: player2Name } = HTMLElements.players.player2InputField;
 
   //Create Player Objects
   let player1 = new Player(player1Name);

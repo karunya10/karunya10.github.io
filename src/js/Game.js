@@ -96,7 +96,8 @@ export class Game {
   }
   startTimer() {
     this.intervalId = setInterval(() => {
-      const time = HTMLElements.timeLeft;
+      // const time = HTMLElements.timeLeft;
+      const { timeLeft: time } = HTMLElements;
       time.innerText = this.remainingTime--;
       if (this.remainingTime < 0) {
         this.resetCardsGameLogic();
@@ -106,13 +107,15 @@ export class Game {
   }
   resetTimers() {
     clearInterval(this.intervalId);
-    const time = HTMLElements.timeLeft;
+    // const time = HTMLElements.timeLeft;
+    const { timeLeft: time } = HTMLElements;
     this.remainingTime = FIFTEEN_SECONDS;
     time.innerText = this.remainingTime;
   }
   changeCurrentPlayer() {
-    const player1Info = HTMLElements.players.player1Info;
-    const player2Info = HTMLElements.players.player2Info;
+    // const player1Info = HTMLElements.players.player1Info;
+    // const player2Info = HTMLElements.players.player2Info;
+    const { player1Info, player2Info } = HTMLElements.players;
     this.currentPlayer =
       this.currentPlayer === this.player1.id
         ? this.player2.id
@@ -121,8 +124,10 @@ export class Game {
     player2Info.classList.toggle("player-info-higlight");
   }
   updatePlayerNames() {
-    const player1Element = HTMLElements.players.player1Name;
-    const player2Element = HTMLElements.players.player2Name;
+    // const player1Element = HTMLElements.players.player1Name;
+    // const player2Element = HTMLElements.players.player2Name;
+    const { player1Name: player1Element, player2Name: player2Element } =
+      HTMLElements.players;
 
     player1Element.innerText = this.player1.name;
     player2Element.innerText = this.player2.name;
@@ -131,10 +136,12 @@ export class Game {
     const currentPlayerId = this.currentPlayer;
     this.score[currentPlayerId] += 1;
     if (currentPlayerId === this.player1.id) {
-      const player1ScoreElement = HTMLElements.players.player1Score;
+      // const player1ScoreElement = HTMLElements.players.player1Score;
+      const { player1Score: player1ScoreElement } = HTMLElements.players;
       player1ScoreElement.innerText = this.score[currentPlayerId];
     } else {
-      const player2ScoreElement = HTMLElements.players.player2Score;
+      // const player2ScoreElement = HTMLElements.players.player2Score;
+      const { player2Score: player2ScoreElement } = HTMLElements.players;
       player2ScoreElement.innerText = this.score[currentPlayerId];
     }
   }
@@ -159,8 +166,10 @@ export class Game {
     HTMLElements.screens.gameEndScreen.style.display = "flex";
 
     document.body.style.backgroundImage = `url('${HAPPY}')`;
-    const winner = HTMLElements.winnerName;
-    const loser = HTMLElements.loserName;
+    // const winner = HTMLElements.winnerName;
+    // const loser = HTMLElements.loserName;
+    const { winnerName: winner } = HTMLElements;
+    const { loserName: loser } = HTMLElements;
     this.launchConfetti();
     if (this.score[this.player1.id] > this.score[this.player2.id]) {
       winner.innerText = this.player1.name;
