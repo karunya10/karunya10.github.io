@@ -1,5 +1,4 @@
 import { HAPPY, CARDS, HTMLElements, FIFTEEN_SECONDS } from "./constants.js";
-
 export class Game {
   constructor(player1, player2, cards) {
     this.player1 = player1;

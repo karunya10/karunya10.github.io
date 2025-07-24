@@ -54,6 +54,16 @@ function renderPlayerSelection() {
     HTMLElements.screens.gameIntoScreen.style.display = "none";
     HTMLElements.screens.playerSelectionScreen.style.display = "flex";
     document.body.style.backgroundImage = `url("${DUSTMITES}")`;
+    //read from local storage if value exists, replace input.value with get item
+    const player1Name = localStorage.getItem("player1Name");
+    const player2Name = localStorage.getItem("player2Name");
+    if (player1Name) {
+      HTMLElements.players.player1InputField.value = player1Name;
+    }
+
+    if (player2Name) {
+      HTMLElements.players.player2InputField.value = player2Name;
+    }
   }
 }
 
@@ -134,6 +144,9 @@ function createPlayers() {
 
   const { value: player1Name } = HTMLElements.players.player1InputField;
   const { value: player2Name } = HTMLElements.players.player2InputField;
+
+  localStorage.setItem("player1Name", `${player1Name}`);
+  localStorage.setItem("player2Name", `${player2Name}`);
 
   //Create Player Objects
   let player1 = new Player(player1Name);
