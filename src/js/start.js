@@ -55,15 +55,6 @@ function renderPlayerSelection() {
     HTMLElements.screens.playerSelectionScreen.style.display = "flex";
     document.body.style.backgroundImage = `url("${DUSTMITES}")`;
     //read from local storage if value exists, replace input.value with get item
-    const player1Name = localStorage.getItem("player1Name");
-    const player2Name = localStorage.getItem("player2Name");
-    if (player1Name) {
-      HTMLElements.players.player1InputField.value = player1Name;
-    }
-
-    if (player2Name) {
-      HTMLElements.players.player2InputField.value = player2Name;
-    }
   }
 }
 
@@ -73,12 +64,25 @@ function addFormValidation() {
   const name2Input = document.querySelector("#player2");
   const error2Text = document.querySelector("#name2-error");
 
+  const player1Name = localStorage.getItem("player1Name");
+  const player2Name = localStorage.getItem("player2Name");
+  if (player1Name) {
+    HTMLElements.players.player1InputField.value = player1Name;
+  }
+
+  if (player2Name) {
+    HTMLElements.players.player2InputField.value = player2Name;
+  }
+  toggleDifficulty();
+
   name1Input.addEventListener("input", () => {
     nameCheck(name1Input, error1Text);
+    localStorage.setItem("player1Name", name1Input.value);
     toggleDifficulty();
   });
   name2Input.addEventListener("input", () => {
     nameCheck(name2Input, error2Text);
+    localStorage.setItem("player2Name", name2Input.value);
     toggleDifficulty();
   });
 
@@ -144,9 +148,6 @@ function createPlayers() {
 
   const { value: player1Name } = HTMLElements.players.player1InputField;
   const { value: player2Name } = HTMLElements.players.player2InputField;
-
-  localStorage.setItem("player1Name", `${player1Name}`);
-  localStorage.setItem("player2Name", `${player2Name}`);
 
   //Create Player Objects
   let player1 = new Player(player1Name);
