@@ -127,8 +127,10 @@ function renderGameLogic(difficulty) {
 
 function createPlayers() {
   // Get Playernames from second screen
-  // let player1Name = HTMLElements.players.player1InputField.value; //Value will be filled in automatically as user enters
+  // let player1Name = HTMLElements.players.player1InputField.value;
   // let player2Name = HTMLElements.players.player2InputField.value;
+
+  //Value will be filled in automatically as user enters
 
   const { value: player1Name } = HTMLElements.players.player1InputField;
   const { value: player2Name } = HTMLElements.players.player2InputField;
