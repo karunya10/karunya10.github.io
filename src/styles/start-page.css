@@ -16,6 +16,7 @@ li {
   top: 20px;
   right: 20px;
   cursor: pointer;
+  z-index: 100;
 }
 #game-intro {
   display: flex;
